@@ -100,7 +100,7 @@
   height:250px;
   overflow:hidden;
   margin-top: 20%;
-  animation: slide-up 2s;
+  animation: slide-up 2s forward;
 }
 
 @keyframes slide-up {
