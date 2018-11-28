@@ -1,0 +1,141 @@
+/* glow.css v1.0.0 (SuperNiintendo) */
+@keyframes opacity-fade-in {
+  0% {
+    opacity: 0.8
+  } 
+  100% {
+    opacity: 1
+  }
+}
+@keyframes opacity-fade-out {
+  0% {
+    opacity: 1
+  } 
+  100% {
+    opacity: 0.8
+  }
+}
+.opaque-glow:hover {
+  border-radius: 25px;
+  animation: 500ms opacity-fade-in forwards;
+  opacity: 1;
+}
+.opague-glow:not(:hover) {
+  border-radius: 25px; 
+  animation: 500ms opacity-fade-out;
+  opacity: 0.8;
+}
+.opague-glow {
+  color: white; 
+  text-decoration: none;
+  opacity: 0.8;
+}
+.expand {
+    background-color: var(--expand-clr, #ffffff);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.expand:hover {
+  opacity: 1;
+  animation: expand 200ms forwards;
+  box-shadow:  0 0 0 0.65em var(--expand-clr, #ffffff),
+                 0 0 0 1em var(--expand-clr, #ffffff);
+}
+.expand:not(:hover) {
+  opacity: 1;
+  animation: collapse 200ms;
+  box-shadow:  0 0 0 0 var(--expand-clr, #ffffff),
+                 0 0 0 0 var(--expand-clr, #ffffff);
+}
+@keyframes expand {
+  from {
+    box-shadow:  0 0 0 0 var(--expand-clr, #ffffff),
+                 0 0 0 0 var(--expand-clr, #ffffff);
+  }
+  to {
+    box-shadow:  0 0 0 0.65em var(--expand-clr, #ffffff),
+                 0 0 0 1em var(--expand-clr, #ffffff);
+  }
+}    
+@keyframes collapse {
+  from {
+    box-shadow:  0 0 0 0.65em var(--expand-clr, #ffffff),
+                 0 0 0 1em var(--expand-clr, #ffffff);
+  }
+  to {
+    box-shadow:  0 0 0 0 var(--expand-clr, #ffffff),
+                 0 0 0 0 var(--expand-clr, #ffffff);
+  }
+}    
+.pulse {
+  justify-content:flex-end;
+  transition: opacity 0.2s ease-in-out;
+   height: 20px;
+  background-color:var(--pulse-bg, #ffffff);
+  box-shadow: 0 0 16px var(--pulse-bg, #ffffff);
+  border-radius:50%;
+  object-fit: cover;
+  padding: 3px;
+  animation: admin 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 var(--pulse-bg, #ffffff);
+    box-shadow: 0 0 0 0 var(--pulse-bg);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 20px var(--pulse-bg, #ffffff);
+      box-shadow: 0 0 0 20px var(--pulse-bg, #ffffff);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 var(--pulse-bg, #ffffff);
+      box-shadow: 0 0 0 0 var(--pulse-bg, #ffffff);
+  }
+}
+.slide-up {
+  height:250px;
+  overflow:hidden;
+  margin-top: 20%;
+  animation: slide-up 2s;
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 20%;
+  }
+  to {
+    margin-top: 0%;
+  }
+}
+a.hover-active-link {
+  color: dodgerblue;
+  text-decoration: none;
+}
+a.hover-active-link:hover {
+  animation: ha-in 300ms forwards;
+  color: steelblue;
+}
+a.hover-active-link:not(:hover) {
+  animation: ha-out 300ms;
+  color: dodgerblue;
+}
+@keyframes ha-in {
+  from {
+    color: dodgerblue;
+  } 
+  to {
+    color: steelblue;
+  }
+}
+@keyframes ha-out {
+  from {
+    color: steelblue;
+  } 
+  to {
+    color: dodgerblue;
+  }
+}
