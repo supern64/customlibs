@@ -1,4 +1,4 @@
-/* glow.css v1.0.0 (SuperNiintendo) */
+/* glow.css v1.1.0 (SuperNiintendo) */
 @keyframes opacity-fade-in {
   0% {
     opacity: 0.8
@@ -137,5 +137,33 @@ a.hover-active-link:not(:hover) {
   } 
   to {
     color: dodgerblue;
+  }
+}
+.hover-active-button {
+  background-color: #4285f4;
+  text-decoration: none;
+}
+.hover-active-button:hover {
+  animation: hb-in 300ms forwards;
+  background-color: #0069d9;
+}
+.hover-active-button:not(:hover) {
+  animation: hb-out 300ms;
+  background-color: #4285f4;
+}
+@keyframes hb-in {
+  from {
+    background-color: #4285f4;
+  } 
+  to {
+        background-color: #0069d9;
+  }
+}
+@keyframes hb-out {
+  from {
+    background-color: #0069d9;
+  } 
+  to {
+    background-color: #4285f4;
   }
 }
