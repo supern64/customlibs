@@ -97,7 +97,6 @@
   }
 }
 .slide-up {
-  height:250px;
   overflow:hidden;
   margin-top: 20%;
   animation: slide-up 2s forwards;
