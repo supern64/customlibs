@@ -16,7 +16,12 @@ They are listed here.
 #### requests_html
 Only DBLLib requires this.
 #### fire
-Only DBLLib requires this.
+Only DBLLib requires this.  
+
+Glow.CSS
+------
+The latest version of Glow.CSS with CORS access is availible at https://sn64.glitch.me/static/glow.css  
+
 
 If these libraries are not working for you, feel free to contact me.  
 Thank you!
