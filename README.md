@@ -21,7 +21,7 @@ Only DBLLib requires this.
 Glow.CSS
 ------
 The latest version of Glow.CSS with CORS access is availible at  
-Recommended source: https://cdn.glitch.com/56b60005-30df-4a91-85e4-899f6c611814/glow.css  
+Recommended source: https://cdn.glitch.com/56b60005-30df-4a91-85e4-899f6c611814%2fglow.css (Yes, that's the actual URL)
 and:
 https://sn64.glitch.me/static/glow.css 
 
