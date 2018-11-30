@@ -1,4 +1,13 @@
 /* glow.css v1.1.0 (SuperNiintendo) */
+tr.glow-table:hover {
+    background-color: grey;
+}
+td.glow-table, th.glow-table {
+  border-collapse: collapse;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #545454;
+}
 @keyframes opacity-fade-in {
   0% {
     opacity: 0.8
