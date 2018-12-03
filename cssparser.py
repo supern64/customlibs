@@ -4,7 +4,7 @@
 
 import cssutils
 
-def parse_file(filename):
+def parse_file(filename, use_string=True):
     """Parses a CSS sheet from file. Returns a dict."""
     sheet = cssutils.parseFile(filename)
     parsed = {}
@@ -16,9 +16,12 @@ def parse_file(filename):
         parsed[selectorText] = {}
         for property in rule.style:
             name = property.name
-            parsed[selectorText][name] = property.value
+            if use_string == True or use_string != False:
+                parsed[selectorText][name] = property.value.replace('"', "").replace("'", "")
+            else:
+                parsed[selectorText][name] = property.value
     return parsed
-def parse_text(string):
+def parse_text(string, use_string=True):
     """Parses a CSS sheet from a string. Returns a dict."""
     sheet = cssutils.parseString(string)
     parsed = {}
@@ -30,10 +33,13 @@ def parse_text(string):
         parsed[selectorText] = {}
         for property in rule.style:
             name = property.name
-            parsed[selectorText][name] = property.value
+            if use_string == True or use_string != False:
+                parsed[selectorText][name] = property.value.replace('"', "").replace("'", "")
+            else:
+                parsed[selectorText][name] = property.value
     return parsed
-def construct_css_string(dic):
-    """Constructs a CSS formatted string from a dictionary"""
+def construct_css_string(dic, use_string=True):
+    """Constructs a CSS formatted string from a dictionary (You might have to put quotes in some locations!)"""
     string = ""
     for i, (k, v) in enumerate(dic.items()):
         if i == 0:
@@ -41,11 +47,14 @@ def construct_css_string(dic):
         else:
             string = string + "\n." + k + " {\n"
         for s, (c, j) in enumerate(v.items()):
-            string = string + "    " + c + ": " + j + ";\n"
+            if use_string == True or use_string != False:
+                string = string + "    " + c + ': "' + j + '";\n'
+            else:
+                string = string + "    " + c + ": " + j + ";\n"
         string = string + "}"
     return string
-def construct_css_to_file(dic, filename):
-    """Constructs a CSS formatted string from a dictionary then saves it to a file."""
+def construct_css_to_file(dic, filename, use_string=True):
+    """Constructs a CSS formatted string from a dictionary then saves it to a file. (You might have to put quotes in some locations!)"""
     string = ""
     for i, (k, v) in enumerate(dic.items()):
         if i == 0:
@@ -53,7 +62,10 @@ def construct_css_to_file(dic, filename):
         else:
             string = string + "\n." + k + " {\n"
         for s, (c, j) in enumerate(v.items()):
-            string = string + "    " + c + ": " + j + ";\n"
+            if use_string == True or use_string != False:
+                string = string + "    " + c + ': "' + j + '";\n'
+            else:
+                string = string + "    " + c + ": " + j + ";\n"
         string = string + "}"
     open(filename, "w+").write(string)
     return
