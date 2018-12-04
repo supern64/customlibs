@@ -21,7 +21,7 @@ def parse_file(filename, use_string=True):
             else:
                 parsed[selectorText][name] = property.value
     return parsed
-def parse_text(string, use_string=True):
+def parse_string(string, use_string=True):
     """Parses a CSS sheet from a string. Returns a dict."""
     sheet = cssutils.parseString(string)
     parsed = {}
