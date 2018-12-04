@@ -1,6 +1,6 @@
 # CSSParser
 # Simple CSS to dict parser based on cssutils
-# DOES NOT HANDLE @ RULES!!!!
+# DOES NOT HANDLE @ RULES AND MIGHT SKIP SOME RULES!!!!
 
 import cssutils
 
@@ -9,6 +9,8 @@ def parse_file(filename, use_string=True):
     sheet = cssutils.parseFile(filename)
     parsed = {}
     for rule in sheet:
+        if isinstance(rule, cssutils.css.CSSComment) or isinstance(rule, cssutils.css.CSSUnknownRule) or isinstance(rule, cssutils.css.CSSMediaRule):
+            continue
         if rule.selectorText.startswith(".") or rule.selectorText.startswith("#"):
             selectorText = rule.selectorText[1:]
         else:
@@ -26,6 +28,8 @@ def parse_string(string, use_string=True):
     sheet = cssutils.parseString(string)
     parsed = {}
     for rule in sheet:
+        if isinstance(rule, cssutils.css.CSSComment) or isinstance(rule, cssutils.css.CSSUnknownRule) or isinstance(rule, cssutils.css.CSSMediaRule):
+            continue
         if rule.selectorText.startswith(".") or rule.selectorText.startswith("#"):
             selectorText = rule.selectorText[1:]
         else:
@@ -39,7 +43,7 @@ def parse_string(string, use_string=True):
                 parsed[selectorText][name] = property.value
     return parsed
 def construct_css_string(dic, use_string=True):
-    """Constructs a CSS formatted string from a dictionary (You might have to put quotes in some locations!)"""
+    """Constructs a CSS formatted string from a dictionary"""
     string = ""
     for i, (k, v) in enumerate(dic.items()):
         if i == 0:
@@ -54,7 +58,7 @@ def construct_css_string(dic, use_string=True):
         string = string + "}"
     return string
 def construct_css_to_file(dic, filename, use_string=True):
-    """Constructs a CSS formatted string from a dictionary then saves it to a file. (You might have to put quotes in some locations!)"""
+    """Constructs a CSS formatted string from a dictionary then saves it to a file."""
     string = ""
     for i, (k, v) in enumerate(dic.items()):
         if i == 0:
