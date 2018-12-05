@@ -119,6 +119,11 @@ def _mix(string):
                 raise NameError("{0} is not defined".format(str(e)))
 
 if __name__ == "__main__":
+    try:
+        argv[1]
+    except IndexError:
+        print("""Usage: dcss.py [command] [arguments] \n\nWhere [command] is one of: run""")
+        exit()
     if argv[1] == "run":
         global bot
         try:
@@ -128,4 +133,5 @@ if __name__ == "__main__":
             print("Usage: dcss.py run [bot CSS file name]")
         start_bot(bot)  
     else:
-        print("""Usage: dcss.py [command] [arguments] \n     Where [command] is one of: run""")
+        print("""Usage: dcss.py [command] [arguments] \n\nWhere [command] is one of: run""")
+        exit()
