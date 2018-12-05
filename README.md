@@ -19,6 +19,10 @@ Only DBLLib requires this.
 Only DBLLib requires this.  
 #### cssutils
 Only CSSParser requires this.
+#### cssparser
+Only Discord.CSS requires this.
+#### discord.py
+Only Discord.CSS requires this.
 
 Glow.CSS
 ------
@@ -26,6 +30,13 @@ The latest version of Glow.CSS with CORS access is availible at
 Recommended source: https://cdn.glitch.com/56b60005-30df-4a91-85e4-899f6c611814%2fglow.css (Yes, that's the actual URL)
 and:
 https://sn64.glitch.me/static/glow.css 
+
+Discord.CSS
+------
+Discord.CSS is in alpha version and I DO NOT COURAGE YOU TO USE THIS LIBRARY FOR BUILDING GOOD BOTS!  
+You may experience some bugs while using it.  
+If you do, please file an issue form as discord.css wasn't fully tested!  
+And if you want to contribute, PRs are welcome! (as long as they're a bug fix/features add)  
 
 
 If these libraries are not working for you, feel free to contact me.  
