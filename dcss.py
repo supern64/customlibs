@@ -40,7 +40,12 @@ def start_bot(bot):
         libs = [m.strip() for m in bot["libs"].split(",")]
         for i in libs:
             try:
-                importlib.import_module(i)
+                module = importlib.import_module(i)
+                globals().update(
+                    {n: getattr(module, n) for n in module.__all__} if hasattr(module, '__all__') 
+                    else 
+                    {k: v for (k, v) in module.__dict__.items() if not k.startswith('_')
+                })
             except Exception as c:
                 logger.exception("Loading module {0} failed. ({1})".format(i, str(c)))
                 print("Loading module {0} failed. ({1})".format(i, str(c)))
