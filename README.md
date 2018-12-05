@@ -37,7 +37,7 @@ Discord.CSS is in alpha version and I DO NOT COURAGE YOU TO USE THIS LIBRARY FOR
 You may experience some bugs while using it.  
 If you do, please file an issue form as discord.css wasn't fully tested!  
 And if you want to contribute, PRs are welcome! (as long as they're a bug fix/features add)  
-
+Also do note that the documentation is not yet availible!
 
 If these libraries are not working for you, feel free to contact me.  
 Thank you!
