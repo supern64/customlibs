@@ -56,7 +56,7 @@ def start_bot(bot):
         client = discord.Client(status=status, activity=discord.Game(game))
     @client.event
     async def on_message(message): # Parsing time!
-        if message.author.bot:
+        if message.author.bot or message.content.split()[0][1:] == "bot":
             return
         try:
             bot[message.content.split()[0][1:]]
