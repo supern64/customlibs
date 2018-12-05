@@ -118,14 +118,14 @@ def _mix(string):
             except KeyError as e:
                 raise NameError("{0} is not defined".format(str(e)))
 
-if argv[1] == "run":
-    global bot
-    try:
-        logger.debug("Parsing CSS")
-        bot = cssparser.parse_file(argv[2])
-    except IndexError:
-        print("Usage: dcss.py run [bot CSS file name]")
-    start_bot(bot)
-    
-else:
-    print("""Usage: dcss.py [command] [arguments] \n     Where [command] is one of: run""")
+if __name__ == "__main__":
+    if argv[1] == "run":
+        global bot
+        try:
+            logger.debug("Parsing CSS")
+            bot = cssparser.parse_file(argv[2])
+        except IndexError:
+            print("Usage: dcss.py run [bot CSS file name]")
+        start_bot(bot)  
+    else:
+        print("""Usage: dcss.py [command] [arguments] \n     Where [command] is one of: run""")
