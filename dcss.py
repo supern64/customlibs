@@ -93,10 +93,10 @@ def start_bot(bot):
                         await message.channel.send("An error occured while executing the command.")
                         raise
                 try:
-                    await message.channel.send(cmd['response'].format(arguments=arguments, evaled=evaled))
+                    await message.channel.send(cmd['response'].replace("\\n", "\n").format(arguments=arguments, evaled=evaled))
                 except IndexError:
                     try:
-                        await message.channel.send(_mix(cmd['response']))
+                        await message.channel.send(_mix(cmd['response'].replace("\\n", "\n")))
                     except NameError:
                         await message.channel.send("An error occured while making a response. Most likely arguments fed in incorrectly.")
                 return
