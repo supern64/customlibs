@@ -1,4 +1,4 @@
-// YOU CANNOT REMOVE COMMANDS UNLESS YOU RESTART !!
+// Command Parser v1.1
 class CommandParser {
   constructor(options) {
     this.options = options
@@ -7,6 +7,7 @@ class CommandParser {
     }
     this.commands = options.commands || []
     this.prefix = options.prefix
+    this.talkedRecently = new Set();
   }
   parse(message) {
     var messageArray = message.content.split(" ")
@@ -14,18 +15,32 @@ class CommandParser {
     var command = messageArray[0]
     if (this.commands.map(r=> this.prefix + r.name).includes(command)) {
       var commandObject = this.commands.filter(r=> r.name == command.split('').slice(1).join(''))[0]
+      if (commandObject.cooldown) {
+        if (this.talkedRecently.has(message.author.id)) {
+          message.reply("Please wait "  + (commandObject.cooldown / 1000) + " seconds before using this command again.")
+          return
+        } else {}
+      }
       if (!commandObject.arguments) commandObject.arguments = []
-      if (args.length === 0 && commandObject.arguments.length !== 0) {
+      if (args.length === 0 && commandObject.arguments.length !== 0 && !commandObject.noArgumentRule) {
         message.channel.send("Correct Usage: " + this.prefix + commandObject.name + " " + commandObject.arguments.map(r=> "[" + r + "]").join(' ') + "\nDescription: " + commandObject.description || "None")
         return
       }
-      if (args.length !== commandObject.arguments.length && !commandObject.noArgumentRule) {
+      if (args.length !== commandObject.arguments.length && !commandObject.noStrictArgumentRule && !commandObject.noArgumentRule) {
         message.channel.send("Correct Usage: " + this.prefix + commandObject.name + " " + commandObject.arguments.map(r=> "[" + r + "]").join(' ') + "\nDescription: " + commandObject.description || "None")
         return
       } else {
         var returns = commandObject.function ? commandObject.function(message, args) : undefined
         if (!returns) {
-          if (commandObject.noReturn) return
+          if (commandObject.noReturn) {
+            if (commandObject.cooldown) {
+              this.talkedRecently.add(message.author.id)
+              setTimeout(() => {
+                this.talkedRecently.delete(message.author.id);
+              }, commandObject.cooldown);
+            }
+            return
+          }
           if (!commandObject.defaultResponse) {
             throw new Error("No default response specified|is null and function returned undefined|null.")
           } else {
@@ -33,6 +48,12 @@ class CommandParser {
             return
           }
         } else {
+          if (commandObject.cooldown) {
+            this.talkedRecently.add(message.author.id)
+            setTimeout(() => {
+                this.talkedRecently.delete(message.author.id);
+            }, commandObject.cooldown);
+          }
           if (returns.embed && returns.text) { 
             message.channel.send(returns.text, {embed: returns.embed})
             return
