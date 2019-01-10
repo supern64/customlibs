@@ -12,7 +12,7 @@ def parse(text, delimeter=":", newline_delimeter="\n"):
     rtn = dict()
     for i in parsedt:
         b = i.split(delimeter)
-        rtn[b[0].replace(" ", "")] = b[1]
+        rtn[b[0].strip()] = b[1].strip()
     return rtn
 
 def construct(dict, delimeter=": ", newline_delimeter="\n"):
