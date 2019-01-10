@@ -22,7 +22,7 @@ Only DBLLib requires this.
 Only CSSParser requires this.
 #### cssparser
 Only Discord.CSS requires this.
-#### discord.py
+#### discord.py ***(REWRITE VERSION!!!)***
 Only Discord.CSS requires this.
 
 Glow.CSS
