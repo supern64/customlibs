@@ -11,8 +11,8 @@ def parse(text, delimeter=":", newline_delimeter="\n"):
     parsedt = text.split(newline_delimeter)
     rtn = dict()
     for i in parsedt:
-        b = i.split()
-        rtn[b[0].replace(delimeter, "")] = b[1]
+        b = i.split(delimeter)
+        rtn[b[0].replace(" ", "")] = b[1]
     return rtn
 
 def construct(dict, delimeter=": ", newline_delimeter="\n"):
