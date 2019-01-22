@@ -1,3 +1,4 @@
+'use strict';
 // You must have https://github.com/Olical/EventEmitter on your website for this client to work
 
 // Enumerations
