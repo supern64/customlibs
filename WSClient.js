@@ -26,6 +26,9 @@ window.WSCloseReason = {
   MESSAGE_TOO_BIG: 1009,
   EXTENSION_REQUIRED: 1010,
   INTERNAL_SERVER_ERROR: 1011,
+  SERVICE_RESTART: 1012,
+  TRY_AGAIN_LATER: 1013,
+  BAD_GATEWAY: 1014,
   TLS_HANDSHAKE_FAILED: 1015
 }
 window.WSCloseDescription = {
@@ -41,6 +44,9 @@ window.WSCloseDescription = {
   1009: 'Message too big',
   1010: 'Extension requested by client is required',
   1011: 'Internal Server Error',
+  1012: 'Service Restart',
+  1013: 'Try Again Later',
+  1014: 'Bad Gateway',
   1015: 'TLS Handshake Failed' 
 }
 Object.freeze(window.WSState)
@@ -73,7 +79,7 @@ class WSClient extends EventEmitter {
       this.readyStateEnum = getStateFromNumber(this._client.readyState)
     })
     this._client.addEventListener('close', (event) => {
-      this.emit('close', event)
+      this.emit('close', event.code, event.reason, event)
       this.readyState = this._client.readyState
       this.readyStateEnum = getStateFromNumber(this._client.readyState)
     })
