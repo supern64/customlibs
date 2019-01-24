@@ -17,14 +17,16 @@ They are listed here.
 #### requests_html
 Only DBLLib requires this.
 #### fire
-Only DBLLib requires this.  
+1. dbllib
+2. patcher
 #### cssutils
 Only CSSParser requires this.
 #### cssparser
 Only Discord.CSS requires this.
 #### discord.py ***(REWRITE VERSION!!!)***
 Only Discord.CSS requires this.
-
+#### delimlib
+Only patcher requires this.
 Glow.CSS
 ------
 The latest version of Glow.CSS with CORS access is availible at  
