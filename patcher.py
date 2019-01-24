@@ -63,7 +63,7 @@ class CmdTools:
         patch(file, patchfile)
     def make(this, file1, file2, patchfile):
         make_patch_file(file1, file2, patchfile)
-    def version():
+    def version(this):
         print("v1.0.0")
 
 if __name__ == "__main__":
