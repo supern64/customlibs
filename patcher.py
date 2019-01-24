@@ -4,6 +4,8 @@ import delimlib # Get this from https://github.com/chanonlim/customlibs
 import fire
 
 no_patch = ['OriginFile']
+__version__ = "v1.0.0"
+__author__ = "SuperNiintendo"
 
 class PatchNotIntendedError(Exception):
     pass
@@ -64,7 +66,7 @@ class CmdTools:
     def make(this, file1, file2, patchfile):
         make_patch_file(file1, file2, patchfile)
     def version(this):
-        print("v1.0.0")
+        print(__version__)
 
 if __name__ == "__main__":
     fire.Fire(CmdTools)
