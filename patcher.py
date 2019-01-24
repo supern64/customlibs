@@ -30,6 +30,9 @@ def _make_patch(string1, string2):
             continue
         else:
             output.append(str(count + 1) + ": " + i)
+    for (count, i) in enumerate(stringlist):
+        if not list_thing_exists(i, stringlist2) and list_thing_exists(i, stringlist):
+            output.append(str(count + 1) + ": DEL")
     output[:] = [f for f in output if f != ""]
     return "\n".join(output)
 
@@ -40,10 +43,13 @@ def _patch(filedata, patchdata):
         if k in no_patch:
             continue
         else:
-            if list_exists(int(k) - 1, filelist):
-                filelist[int(k) - 1] = v
+            if v == "DEL":
+                filelist.pop(int(k) - 1)
             else:
-                filelist.insert(int(k) - 1, v)
+                if list_exists(int(k) - 1, filelist):
+                    filelist[int(k) - 1] = v
+                else:
+                    filelist.insert(int(k) - 1, v)
     return "\n".join(filelist)
 
 def make_patch_file(file1, file2, patchfile):
