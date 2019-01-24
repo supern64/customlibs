@@ -38,7 +38,7 @@ def _make_patch(string1, string2):
         else:
             output.append(str(count + 1) + ": " + i)
     for (count, i) in enumerate(stringlist):
-        if not _list_thing_exists(i, stringlist2) and _list_thing_exists(i, stringlist):
+        if not _list_thing_exists(i, stringlist2) and _list_thing_exists(i, stringlist) and not all(e.startswith(str(count + 1) + ": ") for e in output):
             output.append(str(count + 1) + ": DEL")
     output[:] = [f for f in output if f != ""]
     return "\n".join(output)
