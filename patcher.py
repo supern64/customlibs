@@ -10,7 +10,7 @@ __author__ = "SuperNiintendo"
 class PatchNotIntendedError(Exception):
     pass
 
-def list_exists(index, list):
+def _list_exists(index, list):
     try:
         list[index]
     except IndexError:
@@ -18,12 +18,19 @@ def list_exists(index, list):
     else:
         return True
     
+def _list_thing_exists(thing, list):
+    try:
+        list.index(thing)
+    except ValueError:
+        return False
+    else:
+        return True
 def _make_patch(string1, string2):
     stringlist = string1.split("\n")
     stringlist2 = string2.split("\n")
     output = []
     for (count, i) in enumerate(stringlist2):
-        if not list_exists(count, stringlist):
+        if not _list_exists(count, stringlist):
             output.append(str(count + 1) + ": " + i)
             stringlist.insert(count, i)
         if i == stringlist[count]:
@@ -31,7 +38,7 @@ def _make_patch(string1, string2):
         else:
             output.append(str(count + 1) + ": " + i)
     for (count, i) in enumerate(stringlist):
-        if not list_thing_exists(i, stringlist2) and list_thing_exists(i, stringlist):
+        if not _list_thing_exists(i, stringlist2) and _list_thing_exists(i, stringlist):
             output.append(str(count + 1) + ": DEL")
     output[:] = [f for f in output if f != ""]
     return "\n".join(output)
@@ -46,7 +53,7 @@ def _patch(filedata, patchdata):
             if v == "DEL":
                 filelist.pop(int(k) - 1)
             else:
-                if list_exists(int(k) - 1, filelist):
+                if _list_exists(int(k) - 1, filelist):
                     filelist[int(k) - 1] = v
                 else:
                     filelist.insert(int(k) - 1, v)
