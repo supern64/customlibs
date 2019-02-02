@@ -1,9 +1,9 @@
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 
 export function parse(text, delimeter=":", newlineDelimeter="\n") {
-	if (delimeter == newlineDelimeter) {
-		throw new Error("Delimeter cannot be the same as newline delimeter")
-	}
+    if (delimeter == newlineDelimeter) {
+	throw new Error("Delimeter cannot be the same as newline delimeter")
+    }
     var parseData = text.split(newlineDelimeter)
     var returnValue = {}
     for (var i in parseData) {
@@ -13,9 +13,9 @@ export function parse(text, delimeter=":", newlineDelimeter="\n") {
     return returnValue
 }
 export function construct(object, delimeter=": ", newlineDelimeter="\n") {
-	if (delimeter == newlineDelimeter) {
-		throw new Error("Delimeter cannot be the same as newline delimeter")
-	}
+    if (delimeter == newlineDelimeter) {
+	throw new Error("Delimeter cannot be the same as newline delimeter")
+    }
     var array = []
     for (var key in object) {
         array.push(key + delimeter + object[key])
