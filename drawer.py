@@ -39,7 +39,7 @@ def generate_box(text):
     retValue = "\n".join(returning_lines)
     returning_lines = []
     return retValue
-def generate_generating_text_animation(text, timing=0.1):
+def generate_generating_text_animation(text, timing=0.01):
     """Generates an animated text"""
     text_split = list(text)
     writing_character = 1
