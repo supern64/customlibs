@@ -1,5 +1,7 @@
 # ASCII box generator
 # Doesn't work with newlines yet
+import time
+
 template = """________________________________
 |                              |
 |                              |
