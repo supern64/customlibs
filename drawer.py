@@ -1,7 +1,6 @@
 # ASCII box generator
-# Doesn't work with newlines yet
+# generate_box() doesn't work with newlines yet
 import time
-
 template = """________________________________
 |                              |
 |                              |
@@ -41,12 +40,16 @@ def generate_box(text):
     retValue = "\n".join(returning_lines)
     returning_lines = []
     return retValue
-def generate_generating_text_animation(text, timing=0.01):
+def generate_generating_text_animation(text, timing=0.1):
     """Generates an animated text"""
-    text_split = list(text)
-    writing_character = 1
-    for i in text_split:
-        print("".join(text_split[0:writing_character]), end="\r")
-        writing_character = writing_character + 1
-        time.sleep(timing)
-    print("")
+    newline_split = text.split("\n")
+    for e in newline_split:
+        text_split = list(e)
+        writing_character = 1
+        for i in text_split:
+            print("".join(text_split[0:writing_character]), end="\r")
+            writing_character = writing_character + 1
+            time.sleep(timing)
+        print("")
+
+    
