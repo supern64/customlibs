@@ -104,6 +104,15 @@ class Screen:
             raise Exception("obj must be of type Drawable or inheritent thereof")
         obj.draw_on(self)
 
+    def input(self, text):
+        show()
+        set_echo(True)
+        res = input(bg("dark_gray") + text)
+        clear()
+        hide()
+        set_echo(False)
+        return res
+
 
 class Drawable:
     """Base class for objects that can be drawn with Screen.draw()
@@ -136,7 +145,7 @@ class Drawable:
 
 class Text(Drawable):
     def __init__(self, x, y, text):
-        super().__init__(x, y, len(text), len(text.split("\n")))
+        super().__init__(x, y, max([len(i) for i in text.split("\n")]), len(text.split("\n")))
         self.text = text
 
     def draw_on(self, screen):
