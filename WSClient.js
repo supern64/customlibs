@@ -66,19 +66,9 @@ class WSClient extends EventEmitter {
     this.readyStateEnum = getStateFromNumber(this._client.readyState)
     this.extensions = this._client.extensions
     this.binaryType = this._client.binaryType
-    function waitForConnection() {
-        if (ws.readyState === 1) {
-            this.emit('ready')
-        } else {
-            setTimeout(function () {
-                this.waitForConnection();
-            }, 10);
-        }
-    };
     this._client.addEventListener('open', (event) => {
       this.emit('open', event)
       this.readyState = this._client.readyState
-      waitForConnection()
       this.readyStateEnum = getStateFromNumber(this._client.readyState)
     })
     this._client.addEventListener('message', (event) => {
