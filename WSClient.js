@@ -70,9 +70,8 @@ class WSClient extends EventEmitter {
         if (ws.readyState === 1) {
             this.emit('ready')
         } else {
-            var that = this;
             setTimeout(function () {
-                that.waitForConnection(10);
+                this.waitForConnection();
             }, 10);
         }
     };
