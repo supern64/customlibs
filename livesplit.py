@@ -54,7 +54,7 @@ class LiveSplit:
         self.socket.sendall(b'unpausegametime\r\n')
     def set_comparison(self, comparison):
         self._check_conn()
-        self.socket.sendall(b'setcomparison' + comparison + b'\r\n')
+        self.socket.sendall(b'setcomparison ' + comparison + b'\r\n')
     def get_delta(self, comparison=b''):
         self._check_conn()
         self.socket.sendall(b'getdelta' + comparison + b'\r\n')
@@ -81,12 +81,15 @@ class LiveSplit:
         return data
     def get_final_time(self, comparison=b''):
         self._check_conn()
-        self.socket.sendall(b'getfinaltime' + comparison + b'\r\n')
+        if comparison != b'':
+            self.socket.sendall(b'getfinaltime ' + comparison + b'\r\n')
+        else:
+            self.socket.sendall(b'getfinaltime\r\n')
         data = self.socket.recv(1024).decode("utf-8").replace("\r\n", "")
         return data
     def get_predicted_time(self, comparison):
         self._check_conn()
-        self.socket.sendall(b'getpredictedtime' + comparison + b'\r\n')
+        self.socket.sendall(b'getpredictedtime ' + comparison + b'\r\n')
         data = self.socket.recv(1024).decode("utf-8").replace("\r\n", "")
         return data
     def get_best_possible_time(self):
