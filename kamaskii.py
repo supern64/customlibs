@@ -3,24 +3,28 @@ import numpy as np
 import json
 
 class SceneDisplay:
-	def __init__(self, screen, camera):
+	def __init__(self, screen, cameras):
 		self._screen = screen
 		self.width = screen.width
 		self.height = screen.height
-		self.camera = camera
+		self.cameras = cameras
 		self._screen.clear()
-	def set_camera(self, camera):
+	def add_camera(self, camera):
 		self._screen.clear_buffer(1, 0, 0)
 		if type(camera) != Camera:
 			raise InvalidType("camera must be of type Camera")
-		self.camera = camera
+		self.cameras.append(camera)
 	def render_frame(self):
-		frame = self.camera.get_final_frame()
 		self._screen.clear_buffer(1, 0, 0)
-		for y in range(0, len(frame)):
-			for x in range(0, len(frame[y])):
-				if frame[y][x] != "" and frame[y][x] != " ":
-					self._screen.print_at(frame[y][x], x, y)
+		for camera_d in self.cameras:
+			camera = camera_d[0]
+			camera_x = camera_d[1]
+			camera_y = camera_d[2]
+			frame = camera.get_final_frame()
+			for y in range(0, len(frame)):
+				for x in range(0, len(frame[y])):
+					if frame[y][x] != "" and frame[y][x] != " ":
+						self._screen.print_at(frame[y][x], x+camera_x, y+camera_y)
 		self._screen.refresh()
 
 class Camera:
@@ -46,6 +50,8 @@ class Camera:
 	def print_overlay(self, str, x, y):
 		for i in range(len(str)):
 			self.print_overlay_char(str[i], x+i, y)
+	def clean_overlays(self):
+		self.overlays.fill(" ")
 
 class Scene:
 	def __init__(self, w, h):
@@ -62,6 +68,8 @@ class Scene:
 	def print_to(self, string, x, y):
 		for i in range(len(string)):
 			self.print_char(string[i], x+i, y)
+	def clean_scene(self):
+		self._buffer.fill(" ")
 
 class InvalidType(Exception):
 	pass
